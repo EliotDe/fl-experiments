@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # mnist-experiment: A Flower / PyTorch app
 
 ## Install dependencies and project
