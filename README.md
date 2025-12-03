@@ -1,5 +1,7 @@
 # mnist-experiment: A Flower / PyTorch app
 
+Following the flower docs I have implemented a simple federated learning simulation to collaboratively train a model on the MNIST dataset. 
+
 ## Install dependencies and project
 
 The dependencies are listed in the `pyproject.toml` and you can install them as follows:
