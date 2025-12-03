@@ -3,6 +3,7 @@ from flwr.app import ArrayRecord, ConfigRecord, Context
 from flwr.serverapp import Grid, ServerApp
 from flwr.serverapp.strategy import FedAvg
 from mnist_experiment.task import ConvNN
+from mnist_experiment.task import central_evaluate 
 
 
 app = ServerApp()
@@ -22,7 +23,8 @@ def main(grid: Grid, context: Context):
             grid=grid,
             initial_arrays=arrays,
             train_config=ConfigRecord({"lr": lr}),
-            num_rounds=num_rounds
+            num_rounds=num_rounds,
+            evaluate_fn=central_evaluate
     )
 
     print("\nSaving Final Model:")

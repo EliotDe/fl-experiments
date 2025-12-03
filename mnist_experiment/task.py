@@ -1,3 +1,5 @@
+from datasets import load_dataset
+from flwr.app import ArrayRecord, MetricRecord
 from flwr_datasets import FederatedDataset 
 from flwr_datasets.partitioner import IidPartitioner
 import torch
@@ -103,3 +105,27 @@ def test(model, testloader, device):
     accuracy = correct / len(testloader.dataset)
     loss = loss / len(testloader)
     return loss, accuracy
+
+
+def central_evaluate(server_round: int, arrays: ArrayRecord) -> MetricRecord:
+    model = ConvNN()
+    model.load_state_dict(arrays.to_torch_state_dict())
+    model.to("cpu")
+
+    mnist_test = load_dataset("mnist", split="test")
+    pytorch_transforms = Compose(
+            [ToTensor(), Normalize((0.5,),(0.5,))]
+    )
+
+    def apply_transforms(batch):
+        batch["image"] = [pytorch_transforms(image) for image in batch["image"]]
+        return batch
+
+    testset = mnist_test.with_transform(apply_transforms)
+    testloader = DataLoader(testset, batch_size=64)
+
+    loss,accuracy = test(model, testloader, "cpu")
+
+    return MetricRecord({"accuracy": accuracy, "loss": loss})
+
+
