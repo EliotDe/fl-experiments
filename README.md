@@ -1,5 +1,6 @@
-<<<<<<< HEAD
 # mnist-experiment: A Flower / PyTorch app
+
+Following the flower docs I have implemented a simple federated learning simulation to collaboratively train a model on the MNIST dataset. 
 
 ## Install dependencies and project
 
@@ -19,6 +20,7 @@ flwr run .
 Refer to the [How to Run Simulations](https://flower.ai/docs/framework/how-to-run-simulations.html) guide in the documentation for advice on how to optimize your simulations.
 
 ## MNIST-Results
+Current model achieved an aggregated accuracy of ~97% over 3 server rounds and 3 local epochs.
 
 ## Resources
 
@@ -29,5 +31,3 @@ Refer to the [How to Run Simulations](https://flower.ai/docs/framework/how-to-ru
   - [Flower Slack](https://flower.ai/join-slack/)
   - [Flower Discuss](https://discuss.flower.ai/)
 =======
-# fl-experiments
-Learning Flower
